@@ -1,0 +1,20 @@
+---
+- yum: name=git enablerepo=epel state=present
+
+- name: 基本ソフトのインストール
+  yum:
+    name: "{{ item }}"
+    enablerepo: epel
+    state: present
+  with_items:
+    - openssl-devel
+    - readline-devel
+    - zlib-devel
+    - libcurl-devel
+    - sqlite
+    - sqlite-devel
+    - git
+
+- name: install the 'Development tools' package group
+  yum: name="@Development tools" state=present
+

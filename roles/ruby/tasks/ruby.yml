@@ -1,0 +1,80 @@
+---
+- name: Rubyの存在確認
+  shell: which ruby
+  register: ruby_install
+  failed_when: ruby_install.rc not in [0, 1]
+
+# ========================================================
+# 以下のRubyがインストールされている場合は設定しない
+# ========================================================
+
+# ========================================================
+# githubよりrbenv(Rubyの複数バージョン切替)をクローンする
+# ========================================================
+- name: gitからrbenvをクローンする
+  git: repo=https://github.com/sstephenson/rbenv.git dest=/home/ec2-user/.rbenv
+  when: ruby_install.rc == 1
+
+# ========================================================
+# githubよりruby-build(rubyインストーラ)をクローンする
+# ========================================================
+- name: rbenvビルドプラグインをクローンする
+  git: repo=https://github.com/sstephenson/ruby-build.git dest=/home/ec2-user/.rbenv/plugins/ruby-build
+  when: ruby_install.rc == 1
+
+- shell: chown -R ec2-user:ec2-user /home/ec2-user/.rbenv
+  when: ruby_install.rc == 1
+
+
+# ========================================================
+# 環境変数の設定 
+# ========================================================
+- name: bash_profileにパスを追加
+  lineinfile: dest="/home/ec2-user/.bash_profile" line="export PATH=$HOME/.rbenv/bin:$PATH"
+  when: ruby_install.rc == 1
+
+- name: .bash_prifileにrbenv initを追加
+  lineinfile:  dest="/home/ec2-user/.bash_profile" line='eval "$(rbenv init -)"'
+  when: ruby_install.rc == 1
+
+
+- name: bash_profile再読み込み
+  shell: source /home/ec2-user/.bash_profile
+  when: ruby_install.rc == 1
+
+# ========================================================
+# ruby 2.0.0バージョンをインストールする
+# ========================================================z
+- name: 2.0.0のインストール
+  command: rbenv install 2.0.0-p353
+  when: ruby_install.rc == 1
+
+# ========================================================
+# rbenv rehashを行う
+# ========================================================z
+- name: rehashを行う
+  command: rbenv rehash
+  when: ruby_install.rc == 1
+
+# ========================================================
+# ruby 2.0.0をデフォルトに設定
+# ========================================================z
+- name: 2.0.0をデフォルトに設定
+  shell: rbenv global 2.0.0-p353
+  when: ruby_install.rc == 1
+
+- name: railsインストール
+  shell: gem install rails -v '4.0.1'
+
+
+#- name: atomicインストール
+#  shell: "gem install atomic -v '1.1.14'"
+
+
+# ========================================================
+# rbenv rehashを行う
+# ========================================================z
+- name: rehashを行う
+  command: rbenv rehash
+  when: ruby_install.rc == 1
+

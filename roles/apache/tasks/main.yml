@@ -1,0 +1,4 @@
+---
+- yum: name=httpd enablerepo=epel state=present
+
+- service: name=httpd state=restarted enabled=yes

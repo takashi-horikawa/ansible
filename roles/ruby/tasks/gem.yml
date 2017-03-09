@@ -1,0 +1,10 @@
+---
+- name: Install Ruby gems
+  gem: name="{{ item }}" state=present user_install=no executable=/home/ec2-user/.rbenv/shims/gem
+  notify: rbenv rehash
+  with_items:
+    - rails==4.0.1
+    - atomic==1.1.14  
+#    - bundler==4.0.1
+#    - mailcatcher
+#    - wordmove

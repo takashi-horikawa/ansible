@@ -1,0 +1,13 @@
+- hosts: base
+  connection: local
+  user: ec2-user
+  sudo: yes
+  roles: 
+#  - base
+#  - apache
+#  - php
+#  - mysql
+#  - timezone
+#  - selinux
+  - ruby
+ 

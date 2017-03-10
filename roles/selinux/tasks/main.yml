@@ -1,3 +1,4 @@
 ---
+- yum: name=libselinux-python state=present
 - selinux: state=disabled
 

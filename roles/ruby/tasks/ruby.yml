@@ -1,6 +1,7 @@
 ---
 - name: Rubyの存在確認
-  shell: which ruby
+#  shell: which ruby
+  shell: which hoge
   register: ruby_install
   failed_when: ruby_install.rc not in [0, 1]
 
@@ -39,7 +40,8 @@
 
 
 - name: bash_profile再読み込み
-  shell: source /home/ec2-user/.bash_profile
+#  shell: source /home/ec2-user/.bash_profile
+  shell: . ./.bash_profile
   when: ruby_install.rc == 1
 
 # ========================================================
@@ -65,6 +67,9 @@
 
 - name: railsインストール
   shell: gem install rails -v '4.0.1'
+
+- name: passengerインストール
+  shell: gem install passenger -v '4.0.48'
 
 
 #- name: atomicインストール

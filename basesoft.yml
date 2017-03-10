@@ -3,11 +3,11 @@
   user: ec2-user
   sudo: yes
   roles: 
-#  - base
-#  - apache
-#  - php
-#  - mysql
-#  - timezone
+  - timezone
 #  - selinux
-  - ruby
+  - base
+  - apache
+  - php
+  - mysql
+#  - ruby
  

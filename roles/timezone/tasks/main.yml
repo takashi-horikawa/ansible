@@ -1,3 +1,5 @@
 ---
+- copy: src=/etc/localtime dest=/etc/localtime_bak
+- file: path=/etc/localtime state=absent
 - file: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime state=link
 

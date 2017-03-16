@@ -6,8 +6,9 @@
   - timezone
 #  - selinux
   - base
-#  - apache
-#  - php
+  - apache
+  - php
+  - postfix
 #  - mysql
 #  - ruby
  

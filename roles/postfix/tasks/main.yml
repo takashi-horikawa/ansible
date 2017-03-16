@@ -1,0 +1,8 @@
+---
+- service: name=sendmail state=stopped enabled=no
+- yum: name=postfix state=absent
+- yum: name=postfix enablerepo=epel state=present
+
+- copy: src=main.cf dest=/etc/postfix/main.cf owner=root group=root mode=0644
+
+- service: name=postfix state=restarted enabled=yes

@@ -6,12 +6,15 @@
 - name: php 本体 install
   yum: name=php55 state=present enablerepo=remi-php55
 
-- name: php main install
-  yum: name={{item}} state=present enablerepo=remi-php55
-  with_items:
-    - php-devel 
-    - php-mbstring 
-    - php-mcrypt 
-    - php-mysql 
+- name: phpmyadmin install
+  yum: name=phpMyAdmin state=present enablerepo=epel
+
+#- name: php main install
+#  yum: name={{item}} state=present enablerepo=remi-php55
+#  with_items:
+#    - php-devel 
+#    - php-mbstring 
+#    - php-mcrypt 
+#    - php-mysql 
 
 

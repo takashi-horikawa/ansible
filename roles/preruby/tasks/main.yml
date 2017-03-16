@@ -1,0 +1,12 @@
+# ========================================================
+# 環境変数の設定
+# ========================================================
+- name: bash_profileにパスを追加
+  lineinfile: dest="/home/ec2-user/.bash_profile" line="export PATH=$HOME/.rbenv/bin:$PATH"
+
+- name: .bash_prifileにrbenv initを追加
+  lineinfile:  dest="/home/ec2-user/.bash_profile" line='eval "$(rbenv init -)"'
+
+- name: bash_profile再読み込み
+#  shell: source /home/ec2-user/.bash_profile
+  shell: . ./.bash_profile

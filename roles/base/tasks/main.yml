@@ -9,7 +9,6 @@
     - sqlite
     - sqlite-devel
     - curl-devel 
-    - httpd-devel 
     - apr-devel 
     - apr-util-devel
     - gcc 

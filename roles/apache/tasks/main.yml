@@ -1,5 +1,6 @@
 ---
 - yum: name=httpd24 enablerepo=epel state=present
+- yum: name=httpd24-devel enablerepo=epel state=present
 - yum: name=mod24_ssl enablerepo=epel state=present 
 - service: name=httpd state=restarted enabled=yes
 

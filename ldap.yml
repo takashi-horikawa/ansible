@@ -1,0 +1,9 @@
+- hosts: base
+  connection: local
+  user: ec2-user
+  sudo: yes
+  vars:
+    colon: ':'
+  roles: 
+  - ldap
+ 

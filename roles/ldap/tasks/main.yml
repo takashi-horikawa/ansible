@@ -1,0 +1,31 @@
+---
+- name: LDAPソフトのインストール
+  yum: name={{ item }} enablerepo=epel state=present
+  with_items:
+    - openldap 
+    - openldap-clients 
+    - openldap-servers 
+    - openssh-ldap 
+    - sssd
+
+- name: sshd_config 追記
+  lineinfile: dest=/etc/ssh/sshd_config line='AuthorizedKeysCommand /usr/libexec/openssh/ssh-ldap-wrapper'
+
+- name: sshd_config 追記2
+  lineinfile: dest=/etc/ssh/sshd_config line='AuthorizedKeysCommandUser %u'
+
+- name: ldap.conf コピー
+  copy: src=ldap.conf dest=/etc/ssh/ldap.conf owner=root group=root mode=0644
+
+
+- name: ldap 有効化
+  shell: authconfig --enablesssd --enablesssdauth --enablelocauthorize --enableldap --enableldapauth --disableldaptls --ldapserver=ldap://internal-common-prd-elb-ldap-1719557023.ap-northeast-1.elb.amazonaws.com/ --ldapbasedn=dc=tateru,dc=local --enablemkhomedir --update 
+
+- name: sssd.conf　編集
+  lineinfile: dest=/etc/nsswitch.conf line="sudoers{{colon}} files sss"
+
+
+
+- service: name=slapd state=restarted enabled=yes
+- service: name=sssd state=restarted enabled=yes
+- service: name=sshd state=restarted 

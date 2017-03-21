@@ -18,7 +18,7 @@
   copy: src=ldap.conf dest=/etc/ssh/ldap.conf owner=root group=root mode=0644
 
 - name: sssd.conf コピー
-  copy: src=sssd.conf dest=/etc/sssd/sssd.conf owner=root group=root mode=0644
+  copy: src=sssd.conf dest=/etc/sssd/sssd.conf owner=root group=root mode=0600
 
 
 - name: ldap 有効化

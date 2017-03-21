@@ -16,4 +16,15 @@
 
 - name: install the 'Development tools' package group
   yum: name="@Development tools" state=present
+  
+- name: gemインストール前準備
+  yum: name={{ item }} state=present
+  with_items:
+    - mysql-devel
+    - postgresql-devel
+    - ImageMagick
+    - ImageMagick-devel
+    
+  
+  
 

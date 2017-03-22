@@ -71,6 +71,9 @@
 - name: passengerインストール
   shell: gem install passenger -v '4.0.48'
 
+- name: mysql2インストール
+  shell: gem install mysql2
+
 
 #- name: atomicインストール
 #  shell: "gem install atomic -v '1.1.14'"

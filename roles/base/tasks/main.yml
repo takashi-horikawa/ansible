@@ -24,6 +24,7 @@
     - postgresql-devel
     - ImageMagick
     - ImageMagick-devel
+    - ruby-devel
     
   
   

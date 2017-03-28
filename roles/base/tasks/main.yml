@@ -1,7 +1,4 @@
 ---
-- name: epelのインストール
-  command: "yum install -y http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/7/x86_64/e/epel-release-7-9.noarch.rpm"
-
 - name: 基本ソフトのインストール
   yum: name={{ item }} enablerepo=epel state=present
   with_items:

@@ -69,7 +69,7 @@
   shell: gem install rails -v '4.0.1'
 
 - name: passengerインストール
-  shell: gem install passenger -v '4.0.48'
+  shell: gem install passenger -v '4.0.60'
 
 - name: mysql2インストール
   shell: gem install mysql2

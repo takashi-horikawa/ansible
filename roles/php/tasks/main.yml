@@ -1,13 +1,13 @@
 ---
 - name: php repo install
-  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm state=present
-#  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+#  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm state=present
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
 
 - name: php 本体 install
   yum: name=php55 state=present enablerepo=remi-php55
 
-- name: phpmyadmin install
-  yum: name=phpMyAdmin state=present enablerepo=epel
+#- name: phpmyadmin install
+#  yum: name=phpMyAdmin state=present 
 
 #- name: php main install
 #  yum: name={{item}} state=present enablerepo=remi-php55

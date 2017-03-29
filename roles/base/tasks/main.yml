@@ -1,4 +1,7 @@
 ---
+- name: リポジトリの有効化
+  copy: src=redhat-rhui.repo dest=/etc/yum.repos.d/redhat-rhui.repo owner=root group=root mode=0644
+
 - name: 基本ソフトのインストール
   yum: name={{ item }} enablerepo=epel state=present
   with_items:
@@ -20,12 +23,29 @@
 - name: gemインストール前準備
   yum: name={{ item }} state=present
   with_items:
-    - mysql-devel
     - postgresql-devel
     - ImageMagick
     - ImageMagick-devel
-    - ruby-devel
-    
+#    - ruby-devel
+
+#- name: mysql repo install
+#  rpm: state=installed file=mysql57-community-release-el7-7.noarch.rpm
+#  shell: "sudo rpm -ivh http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm"
+
+
+- name: mysql-community-develのインストール
+  yum: name=mysql-community-devel state=present
   
-  
+- name: 恵さん作成rhel7構築手順準拠
+  yum: name={{ item }} state=present
+  with_items:
+    - wget 
+    - sysstat
+    - dstat
+    - iotop
+    - hdparm
+    - traceroute
+    - bind-utils
+
+
 

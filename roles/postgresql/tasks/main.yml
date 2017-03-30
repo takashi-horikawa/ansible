@@ -1,0 +1,5 @@
+---
+- name: postgresql インストール
+  yum: name=postgresql state=present
+  tags: postgresql
+

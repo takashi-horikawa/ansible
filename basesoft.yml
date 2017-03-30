@@ -9,6 +9,5 @@
   - base
   - php
   - postfix
-#  - mysql
-#  - ruby
+  - mysql
  

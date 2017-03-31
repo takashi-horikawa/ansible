@@ -14,3 +14,6 @@
 
 - service: name=postfix state=restarted enabled=yes
   tags: postfix
+
+- service: name=saslauthd state=restarted enabled=yes
+  tags: postfix

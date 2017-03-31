@@ -1,6 +1,6 @@
 ---
 - name: LDAPソフトのインストール
-  yum: name={{ item }} enablerepo=epel state=present
+  yum: name={{ item }} state=present
   with_items:
     - openldap 
     - openldap-clients 

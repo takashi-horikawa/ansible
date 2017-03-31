@@ -21,12 +21,13 @@
   tags: php
 
 
-- name: phppgadmin install
-  copy: src=phpPgAdmin dest=/usr/share/ directory_mode=yes owner=ec2-user follow=no mode=644
-  tags: php
+#- name: phppgadmin install
+#  command: unzip phpPgAdmin.zip -d /usr/share
+#  : src=phpPgAdmin dest=/usr/share/ directory_mode=yes owner=ec2-user follow=no mode=644
+#  tags: php
 
-- name: php main install
-  yum: name={{item}} state=present 
+- name: php-pgsql install
+  yum: name={{item}} state=present enablerepo=remi-php55
   with_items:
     - php-pgsql
   tags: php

@@ -15,7 +15,7 @@
 
 	// Hostname or IP address for server.  Use '' for UNIX domain socket.
 	// use 'localhost' for TCP/IP connection on this computer
-	$conf['servers'][0]['host'] = '';
+	$conf['servers'][0]['host'] = 'ivtz-dev-post-01.cfhbatrcqnw3.ap-northeast-1.rds.amazonaws.com';
 
 	// Database port on server (5432 is the PostgreSQL default)
 	$conf['servers'][0]['port'] = 5432;
@@ -28,7 +28,7 @@
 
 	// Change the default database only if you cannot connect to template1.
 	// For a PostgreSQL 8.1+ server, you can set this to 'postgres'.
-	$conf['servers'][0]['defaultdb'] = 'template1';
+	$conf['servers'][0]['defaultdb'] = 'cloud';
 
 	// Specify the path to the database dump utilities for this server.
 	// You can set these to '' if no dumper is available.
@@ -90,7 +90,7 @@
 	// will be denied. Only set this false once you have read the FAQ and
 	// understand how to change PostgreSQL's pg_hba.conf to enable
 	// passworded local connections.
-	$conf['extra_login_security'] = true;
+	$conf['extra_login_security'] = false;
 
 	// Only show owned databases?
 	// Note: This will simply hide other databases in the list - this does

@@ -32,3 +32,11 @@
     - php-pgsql
   tags: php
 
+- name: phppgadmin conf copy for apache
+  copy: src=phpPgAdmin.conf dest=/etc/httpd/conf.d/phpPgAdmin.conf mode=644 owner=root
+  tags: php
+
+- name: apache restart
+  service: name=httpd state=restarted
+  tags: php
+

@@ -1,6 +1,16 @@
 ---
 - yum: name=postfix state=present
+  tags: postfix
+
+- name: sasl認証モジュール
+  yum: name={{item}} state=present
+  with_items:
+    - cyrus-sasl-gssapi
+    - cyrus-sasl-md5
+  tags: postfix
 
 - copy: src=main.cf dest=/etc/postfix/main.cf owner=root group=root mode=0644
+  tags: postfix
 
 - service: name=postfix state=restarted enabled=yes
+  tags: postfix

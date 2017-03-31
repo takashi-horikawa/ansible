@@ -1,12 +1,16 @@
 ---
+- name: リポジトリファイルのコピー
+  copy: src=redhat-rhui.repo dest=/etc/yum.repos.d/redhat-rhui.repo owner=root group=root mode=0644
+
+
 - name: LDAPソフトのインストール
   yum: name={{ item }} state=present
   with_items:
     - openldap 
     - openldap-clients 
-    - openldap-servers 
     - openssh-ldap 
     - sssd
+    - nss-pam-ldapd
 
 - name: sshd_config 追記
   lineinfile: dest=/etc/ssh/sshd_config line='AuthorizedKeysCommand /usr/libexec/openssh/ssh-ldap-wrapper'
@@ -30,6 +34,6 @@
 
 
 
-- service: name=slapd state=restarted enabled=yes
+#- service: name=slapd state=restarted enabled=yes
 - service: name=sssd state=restarted enabled=yes
 - service: name=sshd state=restarted 

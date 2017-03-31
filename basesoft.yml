@@ -7,8 +7,8 @@
   - apache
   - selinux
   - base
-  - php
   - postfix
   - mysql
   - postgresql
+  - php
  

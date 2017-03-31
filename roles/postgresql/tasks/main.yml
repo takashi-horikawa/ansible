@@ -3,3 +3,7 @@
   yum: name=postgresql state=present
   tags: postgresql
 
+- name: postgresql-devel インストール
+  yum: name=postgresql-devel state=present
+  tags: postgresql
+

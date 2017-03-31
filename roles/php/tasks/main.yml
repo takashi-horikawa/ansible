@@ -20,12 +20,14 @@
   yum: name=phpMyAdmin state=present enablerepo=remi-php55
   tags: php
 
-#- name: php main install
-#  yum: name={{item}} state=present enablerepo=remi-php55
-#  with_items:
-#    - php-devel 
-#    - php-mbstring 
-#    - php-mcrypt 
-#    - php-mysql 
-#  tags: php
+
+- name: phppgadmin install
+  copy: src=phpPgAdmin dest=/usr/share/ directory_mode=yes owner=ec2-user follow=no mode=644
+  tags: php
+
+- name: php main install
+  yum: name={{item}} state=present 
+  with_items:
+    - php-pgsql
+  tags: php
 
